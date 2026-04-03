@@ -1,6 +1,6 @@
 import * as path from "path";
 import * as vscode from "vscode";
-import * as xclip from "xclip";
+import * as clipboard from "./wl-clipboard";
 import { toMarkdown } from "./toMarkdown";
 import { Predefine } from "./predefine";
 import { AIPaster } from "./ai_paster";
@@ -27,7 +27,7 @@ class PasteImageContext {
 
 class Paster {
   public static async pasteCode() {
-    const shell = xclip.getShell();
+    const shell = clipboard.getShell();
     const cb = shell.getClipboard();
     const content = await cb.getTextPlain();
     if (content) {
@@ -50,15 +50,15 @@ class Paster {
   }
 
   static async selectClipboardType(
-    type: Set<xclip.ClipboardType> | xclip.ClipboardType
-  ): Promise<xclip.ClipboardType> {
+    type: Set<clipboard.ClipboardType> | clipboard.ClipboardType
+  ): Promise<clipboard.ClipboardType> {
     if (!(type instanceof Set)) {
       return type;
     }
     if (
       this.config.autoSelectClipboardType == "never" ||
       (this.config.autoSelectClipboardType == "html&text" &&
-        type.has(xclip.ClipboardType.Image))
+        type.has(clipboard.ClipboardType.Image))
     ) {
       const selected = await vscode.window.showInformationMessage(
         "There are multiple types of content in your clipboard. Which one do you want to use?",
@@ -70,19 +70,19 @@ class Paster {
       if (selected) {
         return selected;
       }
-      return xclip.ClipboardType.Unknown;
+      return clipboard.ClipboardType.Unknown;
     }
     const priorityOrdering = this.config.autoSelectClipboardTypePriority;
     for (const theType of priorityOrdering)
       if (type.has(theType)) return theType;
-    return xclip.ClipboardType.Unknown;
+    return clipboard.ClipboardType.Unknown;
   }
 
   /**
    * Paste text
    */
   public static async paste() {
-    const shell = xclip.getShell();
+    const shell = clipboard.getShell();
     const cb = shell.getClipboard();
     const ctx_type = await this.selectClipboardType(await cb.getContentType());
 
@@ -92,7 +92,7 @@ class Paster {
 
     Logger.log("Clipboard Type:", ctx_type);
     switch (ctx_type) {
-      case xclip.ClipboardType.Html:
+      case clipboard.ClipboardType.Html:
         if (enableHtmlConverter) {
           const html = await cb.getTextHtml();
           let markdown = toMarkdown(html, turndownOptions);
@@ -108,14 +108,14 @@ class Paster {
           }
         }
         break;
-      case xclip.ClipboardType.Text:
+      case clipboard.ClipboardType.Text:
         const text = await cb.getTextPlain();
         if (text) {
           let newContent = Paster.parse(text);
           await Paster.parseByAI(newContent);
         }
         break;
-      case xclip.ClipboardType.Image:
+      case clipboard.ClipboardType.Image:
         if (false === isRemoteMode()) {
           Paster.pasteImage();
         } else {
@@ -126,7 +126,7 @@ class Paster {
           );
         }
         break;
-      case xclip.ClipboardType.Unknown:
+      case clipboard.ClipboardType.Unknown:
         Logger.log("Unknown type");
         break;
     }
@@ -136,13 +136,13 @@ class Paster {
    * Download url content in clipboard
    */
   public static async pasteDownload() {
-    const shell = xclip.getShell();
+    const shell = clipboard.getShell();
     const cb = shell.getClipboard();
     const ctx_type = await this.selectClipboardType(await cb.getContentType());
     Logger.log("Clipboard Type:", ctx_type);
     switch (ctx_type) {
-      case xclip.ClipboardType.Html:
-      case xclip.ClipboardType.Text:
+      case clipboard.ClipboardType.Html:
+      case clipboard.ClipboardType.Text:
         const text = await cb.getTextPlain();
         if (text) {
           if (/^(http[s]:)+\/\/(.*)/i.test(text)) {
@@ -577,7 +577,7 @@ class Paster {
       vscode.window.showErrorMessage("Make folder failed:" + imgPath);
       return;
     }
-    const shell = xclip.getShell();
+    const shell = clipboard.getShell();
     const cb = shell.getClipboard();
     const imagePath = await cb.getImage(imgPath);
     if (!imagePath) return;
