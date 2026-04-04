@@ -2,7 +2,7 @@
 
 # Raising Issues
 
-If you've found an issue or have a suggestion, please do [open an issue](https://github.com/telesoho/vscode-markdown-paste-image/issues/new). For bugs, it is beneficial to attach a log file recorded while reproducing the issue. You can copy log from VS Code `Markdown Paste` Output Channel (View → Output).
+If you've found an issue or have a suggestion, please do [open an issue](https://github.com/gusbepapi/vscode-markdown-paste-for-wayland/issues/new). For bugs, it is beneficial to attach a log file recorded while reproducing the issue. You can copy log from VS Code `Markdown Paste` Output Channel (View → Output).
 
 # Contributing Code
 
@@ -29,7 +29,7 @@ Running from source is relatively straight forward. You should:
 1. Clone the repository (or your own fork)
 
    ```sh
-    git clone https://github.com/telesoho/vscode-markdown-paste-image.git --recursive
+    git clone https://github.com/gusbepapi/vscode-markdown-paste-for-wayland.git --recursive
    ```
 
 2. Run `npm install` to install dependencies

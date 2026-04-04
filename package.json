@@ -15,6 +15,7 @@
       "url": "https://gusbepapi.it"
     }
   ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/gusbepapi/vscode-markdown-paste-for-wayland.git"

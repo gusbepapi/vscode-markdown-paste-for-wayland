@@ -4,7 +4,8 @@
   "MarkdownPaste.nameSuffix": "_${datetime}",
   "MarkdownPaste.path": "${fileWorkspaceFolder}/res/images",
   "MarkdownPaste.namePrefix": "${fileBasename}_",
-  "MarkdownPaste.turndownOptions": {
+  "MarkdownPaste.turndownOptions": 
+  {
     "headingStyle": "atx",
     "bulletListMarker": "-",
     "strongDelimiter": "**",
