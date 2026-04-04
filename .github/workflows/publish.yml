@@ -1,9 +1,9 @@
-name: Pre-release extension configuration, generation and publication
+name: Publishing the configured and generated extension
 
 on:
   push:
     tags:
-      - pre*.*.*
+      - v*.*.*
 
 jobs:
   release:
@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-      - name: Release
+      - name: Releasing
         uses: softprops/action-gh-release@v1
 
   publish:
@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: Installing Git and Node.js
-        run: pacman -Syu --noconfirm --nedded git nodejs npm
+        run: pacman -Syu --noconfirm --needed git nodejs npm
 
       - name: Checking the repository out
         uses: actions/checkout@v4
@@ -34,5 +34,8 @@ jobs:
       - name: Installing the dependencies
         run: npm ci
 
-      - name: Publishing the pre-release extension
-        run: npx vsce publish -p ${{ secrets.VSCE_TOKEN }} --pre-release
+      - name: Publishing for VSCE
+        run: npx vsce publish -p ${{ secrets.VSCE_TOKEN }}
+
+      - name: Publishing for Open VSX
+        run: npx ovsx publish -p ${{ secrets.OPEN_VSX_TOKEN }}

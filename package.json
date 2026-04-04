@@ -61,7 +61,8 @@
     "lint": "eslint \"src/**/*.ts\"",
     "test": "node ./out_test/test/runTest.js",
     "dev:preinstall": "npx vsce package",
-    "dev:install": "code --install-extension ./vscode-markdown-paste-image-*.vsix"
+    "dev:install:code": "code --install-extension ./vscode-markdown-paste-*.vsix",
+    "dev:install:codium": "codium --install-extension ./vscode-markdown-paste-*.vsix"
   },
   "extensionKind": [
     "ui"

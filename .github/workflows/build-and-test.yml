@@ -1,49 +1,46 @@
-name: Run Tests
+name: Runing the unit tests
 
 on:
   push:
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   build:
-    name: "(${{ matrix.os }})"
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-        node-version: [20.x]
+    name: Running the tests on Wayland
+    runs-on: ubuntu-latest
+    container: archlinux:multilib-devel
 
     steps:
-      - name: Checkout repository
+      - name: Installing the basic dependencies
+        run: pacman -Syu --noconfirm --needed git sudo gcc make wget curl jq
+
+      - name: Checking the repository out
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Setup Node v${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
+      - name: Configuring the Chaotic AUR mirror
+        run: |
+          pacman-key --init
+          curl -sS 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3056513887B78AEB' | pacman-key --add -
+          pacman-key --lsign-key 3056513887B78AEB
+          pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+          cp config/pacman.conf /etc/pacman.conf
+          pacman -Syu --noconfirm --needed
 
-      - name: Setup XVFB
-        if: matrix.os == 'ubuntu-latest'
-        run: Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+      - name: Installing the dependencies
+        run: pacman -S --noconfirm --needed alsa-lib dbus gtk3 libjpeg-turbo libsecret libxss mesa nodejs npm nspr nss xorg-server-xvfb wl-clipboard
 
-      - name: Setup ubuntu
-        if: matrix.os == 'ubuntu-latest'
-        run: sudo apt-get install -y xclip
-
-      - name: npm install
+      - name: Installing via npm
         run: npm install
 
-      - name: npm lint
+      - name: Linting via npm
         run: npm run lint
 
-      - name: npm test
-        run: npm test
+      - name: Testing via npm
+        run: xvfb-run npm test
         env:
           CI: true
           ELECTRON_NO_ATTACH_CONSOLE: 1
-          DISPLAY: ":99.0"
+          ELECTRON_OZONE_PLATFORM_HINT: auto
