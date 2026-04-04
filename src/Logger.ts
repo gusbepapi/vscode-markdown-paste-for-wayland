@@ -1,12 +1,12 @@
 import * as vscode from "vscode";
-import moment from "moment";
+import { DateTime } from "luxon";
 
 export default class Logger {
   static channel: vscode.OutputChannel;
 
   static log(...message: any[]) {
     if (this.channel) {
-      const time = moment().format("MM-DD HH:mm:ss");
+      const time = DateTime.now().toFormat("MM-dd HH:mm:ss");
       for (const m of message) {
         const logmsg = `[${time}] ${m.substring(0, 256)}`;
         this.channel.appendLine(logmsg);

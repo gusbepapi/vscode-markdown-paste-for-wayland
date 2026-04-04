@@ -4,7 +4,7 @@ import * as https from "https";
 import * as path from "path";
 import { mkdir } from "shelljs";
 import * as fs from "fs";
-import moment from "moment";
+import { DateTime } from "luxon";
 import { Uri, env } from "vscode";
 import * as os from "os";
 import Logger from "./Logger";
@@ -107,7 +107,7 @@ function fetchAndSaveFile(fileURL: string, filepath: string) {
  */
 function newTemporaryFilename(prefix = "markdown_paste"): Uri {
   let tempDir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
-  return Uri.parse(path.join(tempDir, moment().format("Y-MM-DD-HH-mm-ss")));
+  return Uri.parse(path.join(tempDir, DateTime.now().toFormat("yyyy-MM-dd-HH-mm-ss")));
 }
 
 /**

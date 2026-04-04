@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
-import moment from "moment";
+import { DateTime } from "luxon";
 import * as path from "path";
-import { v4 as uuidv4 } from "uuid";
+import { randomUUID } from "crypto";
 
 class Predefine {
   _workspaceRoot: string;
@@ -37,7 +37,7 @@ class Predefine {
   }
 
   public datetime(dateformat: string = "yyyyMMDDHHmmss") {
-    return moment().format(dateformat);
+    return DateTime.now().toFormat(dateformat.replace(/Y/g, "y").replace(/D/g, "d"));
   }
 
   public workspaceRoot() {
@@ -98,7 +98,7 @@ class Predefine {
    * a random UUID v4
    */
   public uuid(): string {
-    return uuidv4();
+    return randomUUID();
   }
 
   /**
