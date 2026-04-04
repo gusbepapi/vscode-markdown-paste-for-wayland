@@ -1,358 +1,129 @@
-# Markdown Paste
+# Markdown Paste for Wayland
 
-Smartly paste for Markdown.
+Smartly paste for Markdown, but for Wayland users who use any desktop envrionment, such GNOME, Hyprland, KDE or Sway.
 
-**Support Mac/Windows/Linux!**.
+This repository was forked from the original [Markdown Paste](https://github.com/telesoho/vscode-markdown-paste-image) repository by [@telesoho](https://github.com/telesoho/).
 
-![Markdown paste demo](./res/images/markdown_paste_demo_min.gif)
+**Linux Wayland is supported co-officially**.
+
+> [!NOTE]
+> You can maintain the original “Markdown Paste” extension and use both of them in parallel. All the commands, configuration IDs, properties, and their titles have been renamed with the new `ForWayland` suffix, and the username prefix has been replaced in order to reduce all the conflicts. The keybindings have also been reassigned so you can use both extensions seamlessly without overlap.
+> 
+> Please give a look at the table of commands, IDs, properties, and their titles below to see what changed before and after.
+
+> [!IMPORTANT]
+> The core documentation for templates, regular expression matching rules, and AI parameters remains exactly the same as in the original repository. Please refer to the [original documentation](https://github.com/telesoho/vscode-markdown-paste-image) for detailed usage instructions. Just be aware that the configuration variables, command IDs, and keybindings have been changed for this Wayland version as detailed below.
+
+## What has changed?
+
+- **Removal of Prettier:** The Prettier dependency has been removed as the contributor is not interested in this plugin;
+- **Migration to Luxon:** The `moment` dependency is depreciated, and has been removed, and replaced with `luxon`, and the files that depended on it have been refactored;
+- **Upgraded dependencies:** All the dependencies have been upgraded;
+- **Wayland-focused:** All the dependencies on X11, macOS, and Windows have been removed, as this repository is redesigned for Wayland users, and as the users can use the original extension in parallel.
+
+## Commands and Properties Comparison
+
+Here is a comparison of the original extension’s commands and configuration properties versus the new version:
+
+### Commands
+
+| Original Command (`telesoho.*`) | New Command (`gusbepapi.*`)   | Original Title           | New Title                       | Original Shortcut | New Shortcut        |
+| :------------------------------ | :---------------------------- | :----------------------- | :------------------------------ | :---------------- | :------------------ |
+| `telesoho.MarkdownDownload`     | `gusbepapi.MarkdownDownload`  | Markdown Download        | Markdown Download for Wayland   | `Ctrl+Alt+D`      | `Ctrl+Shift+Alt+D`  |
+| `telesoho.MarkdownPaste`        | `gusbepapi.MarkdownPaste`     | Markdown Paste           | Markdown Paste for Wayland      | `Ctrl+Alt+V`      | `Ctrl+Shift+Alt+V`  |
+| `telesoho.MarkdownPasteCode`    | `gusbepapi.MarkdownPasteCode` | Markdown Paste Code      | Markdown Paste Code for Wayland | `Ctrl+Alt+C`      | `Ctrl+Shift+Alt+C`  |
+| `telesoho.MarkdownRuby`         | `gusbepapi.MarkdownRuby`      | Markdown Ruby            | Markdown Ruby for Wayland       | `Ctrl+Alt+T`      | `Ctrl+Shift+Alt+T`  |
+| `telesoho.insertMathSymbol`     | `gusbepapi.insertMathSymbol`  | Insert latex math symbol | Insert LaTeX formula and symbol | `Ctrl+Alt+\\`     | `Ctrl+Shift+Alt+\\` |
+
+### Configuration Properties
+
+| Original Configuration (`MarkdownPaste.*`)      | New Configuration (`MarkdownPasteForWayland.*`)           |
+| :---------------------------------------------- | :-------------------------------------------------------- |
+| `MarkdownPaste.enableAI`                        | `MarkdownPasteForWayland.enableAI`                        |
+| `MarkdownPaste.openaiConnectOption`             | `MarkdownPasteForWayland.openaiConnectOption`             |
+| `MarkdownPaste.openaiCompletionTemplate`        | `MarkdownPasteForWayland.openaiCompletionTemplate`        |
+| `MarkdownPaste.openaiCompletionTemplateFile`    | `MarkdownPasteForWayland.openaiCompletionTemplateFile`    |
+| `MarkdownPaste.path`                            | `MarkdownPasteForWayland.path`                            |
+| `MarkdownPaste.nameBase`                        | `MarkdownPasteForWayland.nameBase`                        |
+| `MarkdownPaste.namePrefix`                      | `MarkdownPasteForWayland.namePrefix`                      |
+| `MarkdownPaste.nameSuffix`                      | `MarkdownPasteForWayland.nameSuffix`                      |
+| `MarkdownPaste.silence`                         | `MarkdownPasteForWayland.silence`                         |
+| `MarkdownPaste.applyAllRules`                   | `MarkdownPasteForWayland.applyAllRules`                   |
+| `MarkdownPaste.enableHtmlConverter`             | `MarkdownPasteForWayland.enableHtmlConverter`             |
+| `MarkdownPaste.turndownOptions`                 | `MarkdownPasteForWayland.turndownOptions`                 |
+| `MarkdownPaste.enableRulesForHtml`              | `MarkdownPasteForWayland.enableRulesForHtml`              |
+| `MarkdownPaste.enableImgTag`                    | `MarkdownPasteForWayland.enableImgTag`                    |
+| `MarkdownPaste.imageRules`                      | `MarkdownPasteForWayland.imageRules`                      |
+| `MarkdownPaste.rules`                           | `MarkdownPasteForWayland.rules`                           |
+| `MarkdownPaste.encodePath`                      | `MarkdownPasteForWayland.encodePath`                      |
+| `MarkdownPaste.autoSelectClipboardType`         | `MarkdownPasteForWayland.autoSelectClipboardType`         |
+| `MarkdownPaste.autoSelectClipboardTypePriority` | `MarkdownPasteForWayland.autoSelectClipboardTypePriority` |
+| `MarkdownPaste.lang_rules`                      | `MarkdownPasteForWayland.lang_rules`                      |
 
 ## Requirements
 
-- `xclip` command be required (Linux)
-- `powershell` command be required (Win32)
-- `pbpaste` command be required (Mac)
+- `wl-clipboard` (`wl-copy` and `wl-paste`) commands are required (Wayland).
 
 ## Features
 
 - Paste smart
-
-  Smartly paste in Markdown by pressing 'Ctrl+Alt+V' ('Cmd+Alt+V' on Mac) or `Markdown Paste` command.
-
-  - If you paste an image, the extension will create an new file for the image and insert link code to Markdown (Disabled in SSH & Dev Container mode).
-  - If you paste a text, it will test the text with customize regex, and replace matched content by regex.
-  - If you paste a text contain HTML tag, it will try to convert the HTML content to Markdown.
+  > Smartly paste in Markdown by pressing `Ctrl+Shift+Alt+V` or `Markdown Paste for Wayland` command.
+  - If you paste an image, the extension will create a new file for the image and insert link code to Markdown (disabled in SSH and developer container mode).
+  - If you paste a text, it will test the text with customised regular expression, and replace matched content by regular expression.
+  - If you paste a text containing the HTML tag, it will try to convert the HTML content to Markdown.
   - If you paste a rich text, it will try to convert the rich text to Markdown.
-    ![](./res/images/markdown-paste-rich-text-html-table.gif)
-
 - Download file
-
-  Use `Markdown Download` command (Linux or Windows:`Ctrl+Alt+D`, Mac:`Cmd+Alt+D`) to download file and insert link code into Markdown.
-  ![](./res/images/markdown-paste-download-gif-demo.gif)
-
+  Use `Markdown Download for Wayland` command (`Ctrl+Shift+Alt+D`) to download file and insert link code into Markdown.
 - Paste code
-
-  Use `Markdown Paste Code` command (Linux or Window:`Ctrl+Alt+C`, Mac:`Cmd+Alt+C`) to paste code with auto-detecting language.
-
+  Use `Markdown Paste Code for Wayland` command (`Ctrl+Shift+Alt+C`) to paste code with auto-detecting language.
 - Ruby tag
-
-  Also, if you want to write article for learning Asia language like Chinese or Japanese, ruby tag(for example:<ruby>聪明<rp>(</rp><rt>Cōngmíng</rt><rp>)</rp></ruby>) may be useful. Now a ruby tag snippet are prepare for you, select some text and press 'Ctrl+Alt+T'.
+  Also, if you want to write article for learning Asia language like Chinese or Japanese, ruby tag(for example:<ruby>聪明<rp>(</rp><rt>Cōngmíng</rt><rp>)</rp></ruby>) may be useful. Now a ruby tag snippet are prepare for you, select some text and press `Ctrl+Shift+Alt+T`.
 
   ```HTML
   <ruby>聪明<rp>(</rp><rt>pronunciation</rt><rp>)</rp></ruby>
   ```
 
-  This extension will not get the pronunciation for you in this version. You have to replace 'pronunciation' by yourself.
+  This extension will not get the pronunciation for you in this version. You have to replace pronunciation by yourself.
 
-- Insert latex math symbol and emoji
-
-  You can insert latex math symbol and emoji to any text file, such as Julia source file.
-
-  Press 'Ctrl+Alt+\\' or input "Insert latex math symbol" in vscode command panel, then input latex symbol name and choose symbol you want.
-
-  ![](res/images/insert-math-symbol-2018-08-12-18-15-12.png)
-
-- Embed base64 image
-
-  While you paste image or download image, you can force the extension to insert embed base64 image to markdown by empty filename.
-
-  ![](res/images/insert_embed_base64_image.gif)
-
+- Insert LaTeX formula, symbol, and/or emoji
+  You can insert LaTeX formula, symbol, and/or emoji to any text file, such as Julia source file.
+  Press `Ctrl+Shift+Alt+\\` or input "Insert LaTeX formula and symbol" in vscode command panel, then input latex symbol name and choose symbol you want.
+- Embed Base64 image
+  While you paste an image or download an image, you can force the extension to insert an embed Base64 image to Markdown by an empty filename.
 - AI Parse Clipboard
-
-  Use LLM AI to parse `text` or `HTML` clipboard content. You can also customize the AI clipboard parsing behavior to better suit different use cases by using the AI configurations
+  Use LLM AI to parse `text` or `HTML` clipboard content. You can also customise the AI clipboard parsing behaviour to better suit different use cases by using the AI configurations.
 
 ## Config
 
 - Predefined variables
-
   - `${workspaceRoot}` or `${workspaceFolder}` - the path of the folder opened in VS Code
-  - `${workspaceFolderBasename}` - the name of the folder opened in VS Code without any slashes (/)
-  - `${fileWorkspaceFolder}` - the current opened file's workspace folder
+  - `${workspaceFolderBasename}` - the name of the folder opened in VSCode without any slashes (`/`)
+  - `${fileWorkspaceFolder}` - the current opened file’s workspace folder
   - `${file}` or `${filePath}` - the current opened file
-  - `${relativeFileDirname}` - the current opened file's dirname relative to `$fileWorkspaceFolder`
-  - `${fileBasename}` - the current opened file's base name
+  - `${relativeFileDirname}` - the current opened file’s dirname relative to `$fileWorkspaceFolder`
+  - `${fileBasename}` - the current opened file’s base name
   - `${fileBasenameNoExtension}` - the current opened file's base name with no file extension
-  - `${fileExtname}` - the current opened file's extension
-  - `${fileDirname}` - the current opened file's directory name
-  - `${datetime}` - the current date & time formatted by `"yyyyMMDDHHmmss"`, You can customize the format by format string. exp: `${datetime|yyyy-MM-DD_HH-mm-ss}`
-  - `${selectedText}` - the current selected text. If selected text contain illegal characters `\/:*?""<>|\r\n` it will return "". You can also set the default text, exp: `${selectedText|default text}`, If selected text contain illegal characters or selected text is empty it will return the default text.
+  - `${fileExtname}` - the current opened file’s extension
+  - `${fileDirname}` - the current opened file’s directory name
+  - `${datetime}` - the current date and time formatted by `"yyyyMMddHHmmss"`. You can customise the format by format string, for example: `${datetime|yyyy-MM-dd_HH-mm-ss}`
+  - `${selectedText}` - the current selected text. If the selected text contains illegal characters `\/:*?""<>|`, it will return `""`. You can also set the default text, for example: `${selectedText|default text}`. If the selected text contains illegal characters or the selected text is empty, it will return the default text.
   - `${uuid}` - a random UUID v4
 
-- `MarkdownPaste.path`
-
-  The folder path that image will be saved. Support absolute path and relative path and predefined variables.
-
-  Default value is `${fileDirname}`.
-
-- `MarkdownPaste.nameBase`
-
-  The string as the default image file name. Support predefined variables.
-
-  Default value is `${datetime|yyyyMMDDHHmmss}`.
-
-- `MarkdownPaste.namePrefix`
-
-  The string prepend to the default image file name. Support predefined variables.
-
-  Default value is `""`.
-
-- `MarkdownPaste.nameSuffix`
-
-  The string append to the default image file name. Support predefined variables.
-
-  Default value is `""`.
-
-- `MarkdownPaste.silence`
-
-  Enable/disable showing confirm box while paste image. Set this config option to `true`, filename confirm box will not be shown while paste image.
-
-  Default value is `false`.
-
-- `MarkdownPaste.enableImgTag`
-
-  Enable/disable using HTML img tag with width and height for pasting image. If this option be enabled, you can input width and height by using `<filepath>[?width,height]` in filename confirm input box. for example input `\abc\filename.png?200,100`, then `<img src='\abc\filename.png' width='200' height='100' />` will be inserted.
-
-  Default value is `true`.
-
-- `MarkdownPaste.encodePath`
-
-  Encode path link to URL-encode format.
-
-  - `encodeURI` Encode all characters to URL-encode format.
-  - `encodeSpaceOnly` Encode `' '`(space) to `'%20'` only.
-  - `none` Encode nothing.
-
-  Default value is `encodeSpaceOnly`
-
-- `MarkdownPaste.rules`
-
-  If you want to define your own regex to parse and replace content for pasting text. You can fill the following JSON, and set it to this option.
-
-  ```json
-  [{
-      // rule 1
-      "regex": "(https?:\/\/.*)", // your javascript style regex
-      "options": "ig",            // regex option
-      "replace": "[]($1)"         // replace string
-  },
-  {
-      // rule 2
-      "regex": "(https?:\/\/.*)", // your javascript style regex
-      "options": "ig",            // regex option
-      "replace": "[]($1)"         // replace string
-  },
-  ...
-  ]
-  ```
-
-  The extension will try to test text content by regex defined in this option, if matched it will replace content by using the TypeScript function string.replace().
-
-  Default value is:
-
-  ```json
-  [
-    {
-      "regex": "^(?:https?://)?(?:(?:(?:www\\.?)?youtube\\.com(?:/(?:(?:watch\\?.*?v=([^&\\s]+).*)|))?))",
-      "options": "g",
-      "replace": "[![](https://img.youtube.com/vi/$1/0.jpg)](https://www.youtube.com/watch?v=$1)"
-    },
-    {
-      "regex": "^(https?://.*)",
-      "options": "ig",
-      "replace": "[]($1)"
-    }
-  ]
-  ```
-
-  **NOTE** While pasting image, this option also apply to render image path link.
-
-- `MarkdownPaste.applyAllRules`
-
-  If true, it will apply all rules to the same text orderly, instead only the first applicable one.
-
-  Default value is `True`.
-
-- `MarkdownPaste.enableHtmlConverter`
-
-  Enable/disable converting html to markdown.
-
-  Default value is `True`.
-
-- `MarkdownPaste.enableRulesForHtml`
-
-  Enable/disable using rules after converting html to markdown.
-
-  Default value is `True`.
-
-- `MarkdownPaste.turndownOptions`
-
-  Use turndown options when cover html to markdown, please see [turndown options](https://github.com/mixmark-io/turndown#options) for detail.
-
-  Default value is `setext`
-
-- `MarkdownPaste.lang_rules`
-
-  As `MarkdownPaste.rules`, you can define rules for other language (for example: asciidoc).
-
-  ```json
-  [
-    [
-      {
-        "asciidoc": [
-          {
-            "regex": "^(?:https?://)?(?:(?:(?:www\\.?)?youtube\\.com(?:/(?:(?:watch\\?.*?v=([^&\\s]+).*)|))?))",
-            "options": "g",
-            "replace": "image::https://img.youtube.com/vi/$1/0.jpg[link=\"https://www.youtube.com/watch?v=$1\"]"
-          },
-          {
-            "regex": "^(https?://.*)",
-            "options": "ig",
-            "replace": "image::$1[linktext,300]"
-          },
-          {
-            "regex": "(.*/media/)(.*)",
-            "options": "",
-            "replace": "image::$2[linktext,300]"
-          }
-        ]
-      },
-      {
-        "markdownx": [
-          {
-            "regex": "^(?:https?://)?(?:(?:(?:www\\.?)?youtube\\.com(?:/(?:(?:watch\\?.*?v=([^&\\s]+).*)|))?))",
-            "options": "g",
-            "replace": "[![](https://img.youtube.com/vi/$1/0.jpg)](https://www.youtube.com/watch?v=$1)"
-          },
-          {
-            "regex": "^(https?://.*)",
-            "options": "ig",
-            "replace": "[]($1)"
-          }
-        ]
-      }
-    ]
-  ]
-  ```
-
-  **NOTE** If any language rule been matched, it will not apply `MarkdownPaste.rules` anymore.
-
-- `MarkdownPaste.autoSelectClipboardType`
-
-  Auto select clipboard type while multiple clipboard types are available. default is: `html&text`
-
-- `MarkdownPaste.autoSelectClipboardTypePriority`
-
-  Auto select clipboard type priority. default is:
-
-  ```json
-  ["image", "html", "text"]
-  ```
-
-- `MarkdownPaste.enableAI`
-
-  Enable AI clipboard parsing feature. default is `false`.
-
-- `MarkdownPaste.openaiConnectOption`
-
-  Set OpenAI (compatible) connection options. default is:
-
-  ```json
-  "MarkdownPaste.openaiConnectOption": {
-      "apiKey": "",
-      "baseURL": "https://api.groq.com/openai/v1",
-      "maxRetries": 2
-  }
-  ```
-
-  The extension use Groq LLM server by default. You can got an API key from [Groq.com](https://groq.com/).  
-  The extension use [OpenAi Node](https://github.com/openai/openai-node) to connect LLM server. So you can also use another LLM server by setting `MarkdownPaste.openaiConnectOption.baseURL`, e.g. `MarkdownPaste.openaiConnectOption.baseURL = "https://api.openai.com/v1"`, the more detail about openai connection options, please see: https://github.com/openai/openai-node
-
-- `MarkdownPaste.openaiCompletionTemplate`
-
-  Set OpenAI completion template. default is:
-
-  ```json
-  [
-    {
-      "model": "llama-3.1-70b-versatile",
-      "messages": [
-        {
-          "role": "system",
-          "content": ["You are a helpful assistant."]
-        },
-        {
-          "role": "user",
-          "content": [
-            "Translate the following text into English and output in markdown format:",
-            "{{clipboard_text}}"
-          ]
-        }
-      ],
-      "max_tokens": 4096
-    }
-  ]
-  ```
-
-  Note: The extension will replace `{{clipboard_text}}` with your clipboard content.
-
-- `MarkdownPaste.openaiCompletionTemplateFile`
-
-  Set OpenAI completion template file. default is: `${fileWorkspaceFolder}/.openaiCompletionTemplate.json`
-
-  If you want to write more complicated AI completion template, you can use this option.
-
-- **`MarkdownPaste.imageRules`**  
-  **(New Feature)** Define custom rules to modify the target image path and Markdown link pattern based on the current Markdown file's path. Each rule is an object with the following properties:
-
-  - `match`: A regex pattern (as a string) to test against the current Markdown file’s full path.
-  - `targetPath`: A string pattern (supports predefined variables) that specifies where the image should be saved.
-  - `linkPattern`: A string pattern (supports predefined variables) that specifies how the Markdown link for the image should be formatted. You can use `${altText}` as selected text,`${imageFilePath}` as image saved path in the setting.
-  - `options` (optional): Regex options (e.g., `"i"`) for the matching pattern.
-
-  **Example:**
-
-  ```json
-  "MarkdownPaste.imageRules": [
-    {
-      "match": "courses.*cysec",
-      "targetPath": "${workspaceFolder}/labs/public/images/cysec/${fileBasenameNoExtension}_${datetime|yyyy-MM-DD_HH-mm-ss}",
-      "linkPattern": "![${altText}](/images/cysec/${fileBasenameNoExtension}_${datetime|yyyy-MM-DD_HH-mm-ss}.png)"
-    },
-    {
-      "match": "courses.*wired",
-      "targetPath": "${workspaceFolder}/labs/public/images/wired/${fileBasenameNoExtension}_${datetime|yyyy-MM-DD_HH-mm-ss}",
-      "linkPattern": "<img src='/images/wired/${fileBasenameNoExtension}_${datetime|yyyy-MM-DD_HH-mm-ss}.png' alt='${altText}'/>"
-    }
-  ]
-  ```
-  
-  You can also use **regex capture groups** in your `match` patterns. Each captured group can be referenced in `targetPath` and `linkPattern` as `$1`, `$2`, etc. This allows you to dynamically create folders or links based on parts of the Markdown filename or path.
-
-  **Example:**
-
-  ```json
-  "MarkdownPaste.imageRules": [
-    {
-      "match": "(.*)-example\\.md$",
-      "targetPath": "${workspaceFolder}/images/$1/image.png",
-      "linkPattern": "![${altText}](../images/$1/image.png)"
-    }
-  ]
-  ```
+For more information, refer to the original extension documentation regarding how to configure templates, regular expression matching rules, and AI parameters.
 
 ## Issues and Suggestions
 
 1. Please submit bugs via the following link:
-
-   https://github.com/telesoho/vscode-markdown-paste-image/issues
-
-2. Please post suggestions via the following link:
-
-   https://github.com/telesoho/vscode-markdown-paste-image/discussions
+   https://github.com/gusbepapi/vscode-markdown-paste-for-wayland/issues
 
 ## Contributing
 
 See [the contribution guidelines](./CONTRIBUTING.md) for ideas and guidance on how to improve the extension. Thank you!
+
+## Credits
+
+- Original Extension: [Markdown Paste](https://github.com/telesoho/vscode-markdown-paste-image) by WenHong Tan ([@telesoho](https://github.com/telesoho/)).
+- Forked and adapted for Wayland by Gustavo Papi ([@gusbepapi](https://github.com/gusbepapi/)).
 
 ## License
 
