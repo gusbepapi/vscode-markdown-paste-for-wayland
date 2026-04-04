@@ -19,8 +19,8 @@ export class AIPaster {
   }
 
   public destructor() {
-    delete this.client;
-    this.client = null;
+    
+    this.client = undefined as any;
   }
 
   public get config() {
@@ -49,10 +49,10 @@ export class AIPaster {
       if (toolCalls) {
         completion.messages.push(responseMessages);
         for (const toolCall of toolCalls) {
-          const functionName = toolCall.function.name;
+          const functionName = (toolCall as any).function.name;
           const functionResponse = await this.toolsManager.executeTool(
             functionName,
-            JSON.parse(toolCall.function.arguments)
+            JSON.parse((toolCall as any).function.arguments)
           );
           if (functionResponse !== null) {
             completion.messages.push({
@@ -90,8 +90,8 @@ export class AIPaster {
   private mergeToolsByFunctionName(existingTools, newTools) {
     const toolMap = new Map();
 
-    existingTools.forEach((tool) => toolMap.set(tool.function.name, tool));
-    newTools.forEach((tool) => toolMap.set(tool.function.name, tool));
+    existingTools.forEach((tool) => toolMap.set((tool as any).function.name, tool));
+    newTools.forEach((tool) => toolMap.set((tool as any).function.name, tool));
 
     return Array.from(toolMap.values());
   }
@@ -139,7 +139,7 @@ export class AIPaster {
           } else {
             completion.tools = this.toolsManager.getToolsForOpenAI();
           }
-          let content = await this.runCompletion(completion);
+          const content = await this.runCompletion(completion);
           Logger.log("content:", content);
           result += content;
         })

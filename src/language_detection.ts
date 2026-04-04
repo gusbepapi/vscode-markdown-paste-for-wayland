@@ -60,7 +60,7 @@ class LanguageDetection {
 
     const possibleLanguages: ModelResult[] = [modelResults[0]];
 
-    for (let current of modelResults) {
+    for (const current of modelResults) {
       if (current === modelResults[0]) {
         continue;
       }

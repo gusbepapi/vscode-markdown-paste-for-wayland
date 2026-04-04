@@ -14,7 +14,7 @@ import Logger from "./Logger";
  * @param filePath
  */
 function prepareDirForFile(filePath: string) {
-  let dirName = path.dirname(filePath);
+  const dirName = path.dirname(filePath);
   try {
     mkdir("-p", dirName);
   } catch (error) {
@@ -49,7 +49,7 @@ function fetchAndSaveFile(fileURL: string, filepath: string) {
     }
     // Set the request to either http or https
     req = urlParsed.protocol === "https:" ? https : http;
-    let request = req
+    const request = req
       .get(fileURL, (response) => {
         // Handle redirects (301, 302, 307, 308)
         if (
@@ -106,7 +106,7 @@ function fetchAndSaveFile(fileURL: string, filepath: string) {
  * Temporary file class
  */
 function newTemporaryFilename(prefix = "markdown_paste"): Uri {
-  let tempDir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
   return Uri.parse(path.join(tempDir, DateTime.now().toFormat("yyyy-MM-dd-HH-mm-ss")));
 }
 

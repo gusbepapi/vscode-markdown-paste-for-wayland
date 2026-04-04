@@ -25,9 +25,9 @@ suite("ToolsManager Tests", () => {
 
     const tools = toolsManager.getToolsForOpenAI();
     assert.strictEqual(tools.length, 1);
-    assert.strictEqual(tools[0].function.name, toolName);
-    assert.strictEqual(tools[0].function.description, toolDescription);
-    assert.deepStrictEqual(tools[0].function.parameters, toolParameters);
+    assert.strictEqual((tools[0] as any).function.name, toolName);
+    assert.strictEqual((tools[0] as any).function.description, toolDescription);
+    assert.deepStrictEqual((tools[0] as any).function.parameters, toolParameters);
   });
 
   test("executeTool should call the registered tool function", async () => {
@@ -161,6 +161,6 @@ suite("ToolsManager Tests", () => {
 
     const tools = toolsManager.getToolsForOpenAI();
     assert.strictEqual(tools.length, 1);
-    assert.deepStrictEqual(tools[0].function.parameters, toolParameters);
+    assert.deepStrictEqual((tools[0] as any).function.parameters, toolParameters);
   });
 });

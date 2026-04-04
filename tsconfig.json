@@ -3,12 +3,23 @@
   "compilerOptions": {
     "module": "Node16",
     "target": "ES2021",
-    "lib": ["ES2021"],
+    "lib": [
+      "ES2021"
+    ],
     "noUnusedLocals": false,
     "rootDir": "src",
     "outDir": "out",
-    "sourceMap": true
+    "sourceMap": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", ".vscode-test", "scripts"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    ".vscode-test",
+    "scripts"
+  ]
 }

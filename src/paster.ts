@@ -31,8 +31,8 @@ class Paster {
     const cb = shell.getClipboard();
     const content = await cb.getTextPlain();
     if (content) {
-      let ld = new LanguageDetection();
-      let lang = await ld.detectLanguage(content);
+      const ld = new LanguageDetection();
+      const lang = await ld.detectLanguage(content);
       Paster.writeToEditor(`\`\`\`${lang}\n${content}\n\`\`\``);
     }
   }
@@ -86,9 +86,9 @@ class Paster {
     const cb = shell.getClipboard();
     const ctx_type = await this.selectClipboardType(await cb.getContentType());
 
-    let enableHtmlConverter = this.config.enableHtmlConverter;
-    let enableRulesForHtml = this.config.enableRulesForHtml;
-    let turndownOptions = this.config.turndownOptions;
+    const enableHtmlConverter = this.config.enableHtmlConverter;
+    const enableRulesForHtml = this.config.enableRulesForHtml;
+    const turndownOptions = this.config.turndownOptions;
 
     Logger.log("Clipboard Type:", ctx_type);
     switch (ctx_type) {
@@ -103,7 +103,7 @@ class Paster {
         } else {
           const text = await cb.getTextPlain();
           if (text) {
-            let newContent = Paster.parse(text);
+            const newContent = Paster.parse(text);
             await Paster.parseByAI(newContent);
           }
         }
@@ -111,7 +111,7 @@ class Paster {
       case clipboard.ClipboardType.Text:
         const text = await cb.getTextPlain();
         if (text) {
-          let newContent = Paster.parse(text);
+          const newContent = Paster.parse(text);
           await Paster.parseByAI(newContent);
         }
         break;
@@ -156,18 +156,18 @@ class Paster {
    * Ruby tag
    */
   public static Ruby() {
-    let editor = vscode.window.activeTextEditor;
+    const editor = vscode.window.activeTextEditor;
     if (!editor) return;
-    let rubyTag = new vscode.SnippetString(
+    const rubyTag = new vscode.SnippetString(
       "<ruby>${TM_SELECTED_TEXT}<rp>(</rp><rt>${1:pronunciation}</rt><rp>)</rp></ruby>"
     );
     editor.insertSnippet(rubyTag);
   }
 
   private static writeToEditor(content): Thenable<boolean> {
-    let startLine = vscode.window.activeTextEditor.selection.start.line;
+    const startLine = vscode.window.activeTextEditor.selection.start.line;
     const selection = vscode.window.activeTextEditor.selection;
-    let position = new vscode.Position(startLine, selection.start.character);
+    const position = new vscode.Position(startLine, selection.start.character);
     return vscode.window.activeTextEditor.edit((editBuilder) => {
       editBuilder.delete(selection);
       editBuilder.insert(position, content);
@@ -175,9 +175,11 @@ class Paster {
   }
 
   static getConfig() {
+    const editor = vscode.window.activeTextEditor;
     if (!editor)
       return vscode.workspace.getConfiguration("MarkdownPasteForWayland");
 
+    const fileUri = editor.document.uri;
     if (!fileUri)
       return vscode.workspace.getConfiguration("MarkdownPasteForWayland");
 
@@ -207,7 +209,7 @@ class Paster {
         const re = new RegExp(rule.match, rule.options || "");
         const match = re.exec(currentFilePath);
         if (match) {
-          let processedRule = { ...rule };
+          const processedRule = { ...rule };
           if (processedRule.targetPath) {
             processedRule.targetPath = Predefine.replacePredefinedVars(
               processedRule.targetPath
@@ -245,9 +247,9 @@ class Paster {
    * @returns The generated image path.
    */
   private static genTargetImagePath(extension: string = ".png"): string {
-    let editor = vscode.window.activeTextEditor;
+    const editor = vscode.window.activeTextEditor;
     if (!editor) return;
-    let fileUri = editor.document.uri;
+    const fileUri = editor.document.uri;
     if (!fileUri) return;
     if (fileUri.scheme === "untitled") {
       vscode.window.showInformationMessage(
@@ -306,7 +308,7 @@ class Paster {
     const basePath = path.dirname(fileUri.fsPath);
 
     // Compute the image file path relative to the current file.
-    let imageFilePath = Paster.encodePath(
+    const imageFilePath = Paster.encodePath(
       path.relative(basePath, pasteImgContext.targetFile.fsPath)
     );
 
@@ -421,7 +423,7 @@ class Paster {
   }
 
   private static get_rules(languageId) {
-    let lang_rules = Paster.getConfig().lang_rules;
+    const lang_rules = Paster.getConfig().lang_rules;
     if (languageId === "markdown") {
       return Paster.getConfig().rules;
     }
@@ -491,7 +493,7 @@ class Paster {
   private static pasteImageURL(image_url) {
     const filename = image_url.split("/").pop().split("?")[0];
     const ext = path.extname(filename);
-    let imagePath = Paster.genTargetImagePath(ext);
+    const imagePath = Paster.genTargetImagePath(ext);
     if (!imagePath) return;
     const silence = Paster.getConfig().silence;
     if (silence) {
@@ -546,7 +548,7 @@ class Paster {
    */
   private static pasteImage() {
     const ext = ".png";
-    let imagePath = Paster.genTargetImagePath(ext);
+    const imagePath = Paster.genTargetImagePath(ext);
     if (!imagePath) return;
     const silence = Paster.getConfig().silence;
     if (silence) {

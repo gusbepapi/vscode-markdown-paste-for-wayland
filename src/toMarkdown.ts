@@ -272,8 +272,8 @@ function toMarkdown(content, options) {
       .replace(/^\s+|[\s\\]+$/g, "");
   };
 
-  var TurndownService = require("turndown");
-  var turndownService = new TurndownService(options);
+  const TurndownService = require("turndown");
+  const turndownService = new TurndownService(options);
   Object.entries(pandoc).forEach(([key, value]) => {
     turndownService.addRule(key, value);
   });

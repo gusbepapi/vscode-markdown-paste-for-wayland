@@ -42,7 +42,7 @@
     "wl-paste"
   ],
   "engines": {
-    "vscode": "^1.98.0"
+    "vscode": "^1.110.0"
   },
   "categories": [
     "Other"
@@ -406,12 +406,29 @@
     ]
   },
   "dependencies": {
+    "@vscode/vscode-languagedetection": "^1.0.23",
+    "arch": "^3.0.0",
+    "axios": "^1.14.0",
     "luxon": "^3.7.2",
+    "node-html-parser": "^7.1.0",
+    "openai": "^6.33.0",
     "shelljs": "^0.10.0",
     "turndown": "^7.2.4",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/glob": "^9.0.0",
+    "@types/luxon": "^3.7.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^25.5.2",
+    "@types/shelljs": "^0.10.0",
+    "@types/vscode": "^1.110.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.0",
+    "@typescript-eslint/parser": "^8.58.0",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.7.1",
+    "cpy-cli": "^7.0.0",
     "eslint": "^10.2.0",
     "eslint-plugin-jsdoc": "^62.9.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",

@@ -12,7 +12,7 @@ class LatexSymbol {
 
   public load(latexSymbols) {
     this.latexItems = [];
-    for (let name in latexSymbols) {
+    for (const name in latexSymbols) {
       this.latexItems.push({
         description: latexSymbols[name],
         label: name,
@@ -24,7 +24,7 @@ class LatexSymbol {
     if (!item) {
       return;
     }
-    let editor = vscode.window.activeTextEditor;
+    const editor = vscode.window.activeTextEditor;
     if (!editor) {
       return;
     }
@@ -44,7 +44,7 @@ class LatexSymbol {
 export function activate(context: vscode.ExtensionContext) {
   Logger.channel = vscode.window.createOutputChannel("Markdown Paste");
   Logger.log('"vscode-markdown-paste" is now active!');
-  let LatexMathSymbol = new LatexSymbol();
+  const LatexMathSymbol = new LatexSymbol();
   LatexMathSymbol.load(latexSymbols);
   vscode.commands.registerCommand("gusbepapi.insertMathSymbol", () => {
     vscode.window

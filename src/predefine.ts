@@ -13,9 +13,9 @@ class Predefine {
   _fileDirname: string;
 
   constructor() {
-    let editor = vscode.window.activeTextEditor;
-    let fileUri = editor && editor.document.uri;
-    let fileWorkspaceFolderUri =
+    const editor = vscode.window.activeTextEditor;
+    const fileUri = editor && editor.document.uri;
+    const fileWorkspaceFolderUri =
       fileUri && vscode.workspace.getWorkspaceFolder(fileUri);
     this._workspaceRoot =
       (vscode.workspace.workspaceFolders &&
@@ -131,7 +131,7 @@ class Predefine {
    * @returns
    */
   static replacePredefinedVars(str: string) {
-    let predefine = new Predefine();
+    const predefine = new Predefine();
     return Predefine.replaceRegPredefinedVars(str, predefine);
   }
 

@@ -7,7 +7,7 @@ import * as HTMLParser from "node-html-parser";
 export async function fetchWeb({ url }: { url: string }): Promise<any> {
   try {
     const response = await axios.get(url);
-    let html = HTMLParser.parse(response.data);
+    const html = HTMLParser.parse(response.data);
     const body = html.querySelector("body").toString();
     const title = html.querySelector("title").toString();
     return { url, title, body };
@@ -20,7 +20,7 @@ export async function fetchWeb({ url }: { url: string }): Promise<any> {
 
 export async function htmlToMarkdown({ html }: { html: string }): Promise<any> {
   Logger.log("htmlToMarkdown:", JSON.stringify(html));
-  let turndownOptions = Paster.config.turndownOptions;
-  let content = toMarkdown(html, turndownOptions);
+  const turndownOptions = Paster.config.turndownOptions;
+  const content = toMarkdown(html, turndownOptions);
   return { content };
 }
