@@ -175,13 +175,16 @@ class Paster {
   }
 
   static getConfig() {
-    let editor = vscode.window.activeTextEditor;
-    if (!editor) return vscode.workspace.getConfiguration("MarkdownPaste");
+    if (!editor)
+      return vscode.workspace.getConfiguration("MarkdownPasteForWayland");
 
-    let fileUri = editor.document.uri;
-    if (!fileUri) return vscode.workspace.getConfiguration("MarkdownPaste");
+    if (!fileUri)
+      return vscode.workspace.getConfiguration("MarkdownPasteForWayland");
 
-    return vscode.workspace.getConfiguration("MarkdownPaste", fileUri);
+    return vscode.workspace.getConfiguration(
+      "MarkdownPasteForWayland",
+      fileUri
+    );
   }
 
   static get config() {

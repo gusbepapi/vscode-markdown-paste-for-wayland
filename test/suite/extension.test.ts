@@ -96,14 +96,14 @@ suite("Extension Tests", () => {
       }
 
       public workspaceRoot() {
-        return "/telesoho/workspaceRoot";
+        return "/gusbepapi/workspaceRoot";
       }
 
       public filePath() {
         return `${this.fileDirname()}/${this.fileBasename()}`;
       }
       public fileWorkspaceFolder() {
-        return "/telesoho/fileWorkspaceFolder";
+        return "/gusbepapi/fileWorkspaceFolder";
       }
 
       public fileBasename(): string {
@@ -127,17 +127,17 @@ suite("Extension Tests", () => {
     let ret = "";
 
     str = "${workspaceRoot},${datetime|aabbccddee},${fileExtname}";
-    ret_expect = "/telesoho/workspaceRoot,datetime('aabbccddee'),fileExtname";
+    ret_expect = "/gusbepapi/workspaceRoot,datetime('aabbccddee'),fileExtname";
     ret = Predefine.replaceRegPredefinedVars(str, predefine);
     assert.strictEqual(ret, ret_expect);
 
     str = "${workspaceRoot}";
-    ret_expect = "/telesoho/workspaceRoot";
+    ret_expect = "/gusbepapi/workspaceRoot";
     ret = Predefine.replaceRegPredefinedVars(str, predefine);
     assert.strictEqual(ret, ret_expect);
 
     str = "${ workspaceRoot }";
-    ret_expect = "/telesoho/workspaceRoot";
+    ret_expect = "/gusbepapi/workspaceRoot";
     ret = Predefine.replaceRegPredefinedVars(str, predefine);
     assert.strictEqual(ret, ret_expect);
 

@@ -1,21 +1,27 @@
 {
-  "name": "vscode-markdown-paste-image",
-  "displayName": "Markdown Paste",
-  "description": "A smartly paste for markdown.",
-  "version": "1.4.6",
-  "publisher": "telesoho",
+  "name": "vscode-markdown-paste-for-wayland",
+  "displayName": "Markdown Paste for Wayland",
+  "description": "A smartly paste for Markdown, but for Wayland users",
+  "version": "2.0.0",
+  "publisher": "gusbepapi",
   "author": {
     "name": "telesoho",
     "email": "telesoho@gmail.com"
   },
-  "license": "(MIT)",
+  "contributors": [
+    {
+      "name": "Gustavo Papi",
+      "email": "ojlmvpj3m@mozmail.com",
+      "url": "https://gusbepapi.it"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/telesoho/vscode-markdown-paste-image.git"
+    "url": "https://github.com/gusbepapi/vscode-markdown-paste-for-wayland.git"
   },
-  "homepage": "https://github.com/telesoho/vscode-markdown-paste-image",
+  "homepage": "https://github.com/gusbepapi/vscode-markdown-paste-for-wayland",
   "bugs": {
-    "url": "https://github.com/telesoho/vscode-markdown-paste-image/issues"
+    "url": "https://github.com/gusbepapi/vscode-markdown-paste-for-wayland/issues"
   },
   "icon": "res/images/icon.png",
   "galleryBanner": {
@@ -23,13 +29,17 @@
     "theme": "dark"
   },
   "keywords": [
-    "paste",
+    "AI",
     "image",
     "markdown",
+    "paste",
+    "paste code",
     "paste image",
     "paste url",
-    "paste code",
-    "AI"
+    "wayland",
+    "wl-clipboard",
+    "wl-copy",
+    "wl-paste"
   ],
   "engines": {
     "vscode": "^1.98.0"
@@ -57,16 +67,16 @@
   ],
   "contributes": {
     "configuration": {
-      "id": "MarkdownPaste",
-      "title": "Markdown Paste Configuration",
+      "id": "MarkdownPasteForWayland",
+      "title": "Markdown Paste for Wayland Configuration",
       "properties": {
-        "MarkdownPaste.enableAI": {
+        "MarkdownPasteForWayland.enableAI": {
           "type": "boolean",
           "scope": "resource",
           "default": false,
           "description": "Enable AI to parse cliboard context"
         },
-        "MarkdownPaste.openaiConnectOption": {
+        "MarkdownPasteForWayland.openaiConnectOption": {
           "type": "object",
           "scope": "resource",
           "default": {
@@ -76,7 +86,7 @@
           },
           "description": "Configuration options for connecting to the OpenAI compatible API, including the API key, base URL, and maximum number of retries."
         },
-        "MarkdownPaste.openaiCompletionTemplate": {
+        "MarkdownPasteForWayland.openaiCompletionTemplate": {
           "type": "array",
           "scope": "resource",
           "items": {
@@ -95,7 +105,7 @@
                 {
                   "role": "user",
                   "content": [
-                    "Translate the following text into English and output in markdown format:",
+                    "Translate the following text into English and output in Markdown format:",
                     "{{clipboard_text}}"
                   ]
                 }
@@ -105,55 +115,55 @@
           ],
           "description": "The template for AI completion responses."
         },
-        "MarkdownPaste.openaiCompletionTemplateFile": {
+        "MarkdownPasteForWayland.openaiCompletionTemplateFile": {
           "type": "string",
           "scope": "resource",
           "default": "${fileWorkspaceFolder}/.openaiCompletionTemplate.json",
           "description": "The template file for AI completion responses"
         },
-        "MarkdownPaste.path": {
+        "MarkdownPasteForWayland.path": {
           "type": "string",
           "scope": "resource",
           "default": "${fileDirname}",
           "description": "The destination to save image file."
         },
-        "MarkdownPaste.nameBase": {
+        "MarkdownPasteForWayland.nameBase": {
           "type": "string",
           "scope": "resource",
           "default": "${datetime|yyyyMMDDHHmmss}",
           "description": "The string of default image file name."
         },
-        "MarkdownPaste.namePrefix": {
+        "MarkdownPasteForWayland.namePrefix": {
           "type": "string",
           "scope": "resource",
           "default": "",
           "description": "The string prepend to the default image file name."
         },
-        "MarkdownPaste.nameSuffix": {
+        "MarkdownPasteForWayland.nameSuffix": {
           "type": "string",
           "scope": "resource",
           "default": "",
           "description": "The string append to the default image file name."
         },
-        "MarkdownPaste.silence": {
+        "MarkdownPasteForWayland.silence": {
           "type": "boolean",
           "scope": "resource",
           "default": false,
-          "description": "Enable/disable showing confirm box while paste image."
+          "description": "Enable or disable showing confirm box while paste image."
         },
-        "MarkdownPaste.applyAllRules": {
+        "MarkdownPasteForWayland.applyAllRules": {
           "type": "boolean",
           "scope": "resource",
           "default": false,
           "description": "If true, it will apply all rules to the same text orderly, instead only the first applicable one."
         },
-        "MarkdownPaste.enableHtmlConverter": {
+        "MarkdownPasteForWayland.enableHtmlConverter": {
           "type": "boolean",
           "scope": "resource",
           "default": true,
-          "description": "Enable/disable converting html to markdown."
+          "description": "Enable/disable converting HTML to markdown."
         },
-        "MarkdownPaste.turndownOptions": {
+        "MarkdownPasteForWayland.turndownOptions": {
           "type": "object",
           "scope": "resource",
           "default": {
@@ -166,19 +176,19 @@
           },
           "description": "Use turndown options: https://github.com/mixmark-io/turndown#options"
         },
-        "MarkdownPaste.enableRulesForHtml": {
+        "MarkdownPasteForWayland.enableRulesForHtml": {
           "type": "boolean",
           "scope": "resource",
           "default": true,
-          "description": "Enable/disable using rules after converting html to markdown."
+          "description": "Enable or disable using rules after converting html to markdown."
         },
-        "MarkdownPaste.enableImgTag": {
+        "MarkdownPasteForWayland.enableImgTag": {
           "type": "boolean",
           "scope": "resource",
           "default": true,
           "description": "Enable/Disable using img tag with width and height for pasting image."
         },
-        "MarkdownPaste.imageRules": {
+        "MarkdownPasteForWayland.imageRules": {
           "type": "array",
           "scope": "resource",
           "items": {
@@ -199,7 +209,7 @@
               },
               "linkPattern": {
                 "type": "string",
-                "description": "link pattern. ${altText} and ${imageFilePath} predefine variables supported"
+                "description": "Link pattern. ${altText} and ${imageFilePath} predefine variables supported"
               }
             }
           },
@@ -218,20 +228,20 @@
             ]
           ]
         },
-        "MarkdownPaste.rules": {
+        "MarkdownPasteForWayland.rules": {
           "type": "array",
           "scope": "resource",
           "items": {
             "type": "object",
-            "title": "Regex rule",
+            "title": "Regular expression rule",
             "properties": {
               "regex": {
                 "type": "string",
-                "description": "regex string."
+                "description": "Regular expression string."
               },
               "options": {
                 "type": "string",
-                "description": "Regex options."
+                "description": "Regular expression options."
               },
               "replace": {
                 "type": "string",
@@ -251,9 +261,9 @@
               "replace": "[]($1)"
             }
           ],
-          "description": "Rules for markdown paste."
+          "description": "Rules for Markdown paste."
         },
-        "MarkdownPaste.encodePath": {
+        "MarkdownPasteForWayland.encodePath": {
           "type": "string",
           "scope": "resource",
           "enum": [
@@ -264,7 +274,7 @@
           "default": "encodeSpaceOnly",
           "description": "Encode path to URL-encode format. Options: none, encodeURI, encodeSpaceOnly"
         },
-        "MarkdownPaste.autoSelectClipboardType": {
+        "MarkdownPasteForWayland.autoSelectClipboardType": {
           "type": "string",
           "enum": [
             "always",
@@ -275,7 +285,7 @@
           "description": "Auto select clipboard type while multiple clipboard types are available.",
           "default": "html&text"
         },
-        "MarkdownPaste.autoSelectClipboardTypePriority": {
+        "MarkdownPasteForWayland.autoSelectClipboardTypePriority": {
           "type": "array",
           "scope": "resource",
           "items": {
@@ -293,7 +303,7 @@
             "text"
           ]
         },
-        "MarkdownPaste.lang_rules": {
+        "MarkdownPasteForWayland.lang_rules": {
           "type": "array",
           "scope": "resource",
           "items": {
@@ -327,35 +337,35 @@
     },
     "commands": [
       {
-        "command": "telesoho.MarkdownDownload",
-        "title": "Markdown Download"
+        "command": "gusbepapi.MarkdownDownload",
+        "title": "Markdown Download for Wayland"
       },
       {
-        "command": "telesoho.MarkdownPaste",
-        "title": "Markdown Paste"
+        "command": "gusbepapi.MarkdownPaste",
+        "title": "Markdown Paste for Wayland"
       },
       {
-        "command": "telesoho.MarkdownRuby",
-        "title": "Markdown Ruby"
+        "command": "gusbepapi.MarkdownRuby",
+        "title": "Markdown Ruby for Wayland"
       },
       {
-        "command": "telesoho.insertMathSymbol",
-        "title": "Insert latex math symbol"
+        "command": "gusbepapi.insertMathSymbol",
+        "title": "Insert LaTeX formula and symbol"
       },
       {
-        "command": "telesoho.MarkdownPasteCode",
-        "title": "Markdown Paste Code"
+        "command": "gusbepapi.MarkdownPasteCode",
+        "title": "Markdown Paste Code for Wayland"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "command": "telesoho.MarkdownPaste",
+          "command": "gusbepapi.MarkdownPaste",
           "when": "editorLangId =~ /^markdown$|^rmd$|^quarto$|^mdx$/",
           "group": "markdown"
         },
         {
-          "command": "telesoho.MarkdownPasteCode",
+          "command": "gusbepapi.MarkdownPasteCode",
           "when": "editorLangId =~ /^markdown$|^rmd$|^quarto$|^mdx$/",
           "group": "markdown"
         }
@@ -363,33 +373,28 @@
     },
     "keybindings": [
       {
-        "command": "telesoho.MarkdownDownload",
-        "key": "ctrl+alt+d",
-        "mac": "cmd+alt+d",
+        "command": "gusbepapi.MarkdownDownload",
+        "key": "ctrl+shift+alt+d",
         "when": "editorTextFocus"
       },
       {
-        "command": "telesoho.MarkdownPaste",
-        "key": "ctrl+alt+v",
-        "mac": "cmd+alt+v",
+        "command": "gusbepapi.MarkdownPaste",
+        "key": "ctrl+shift+alt+v",
         "when": "editorTextFocus && editorLangId =~ /^markdown$|^rmd$|^quarto$|^mdx$/"
       },
       {
-        "command": "telesoho.MarkdownPasteCode",
-        "key": "ctrl+alt+c",
-        "mac": "cmd+alt+c",
+        "command": "gusbepapi.MarkdownPasteCode",
+        "key": "ctrl+shift+alt+c",
         "when": "editorTextFocus && editorLangId =~ /^markdown$|^rmd$|^quarto$|^mdx$/"
       },
       {
-        "command": "telesoho.MarkdownRuby",
-        "key": "ctrl+alt+t",
-        "mac": "cmd+alt+t",
+        "command": "gusbepapi.MarkdownRuby",
+        "key": "ctrl+shift+alt+t",
         "when": "editorTextFocus"
       },
       {
-        "key": "ctrl+alt+\\",
-        "mac": "cmd+alt+\\",
-        "command": "telesoho.insertMathSymbol",
+        "key": "ctrl+shift+alt+\\",
+        "command": "gusbepapi.insertMathSymbol",
         "when": "editorTextFocus"
       }
     ],
