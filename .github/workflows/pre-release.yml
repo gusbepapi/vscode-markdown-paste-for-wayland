@@ -1,12 +1,14 @@
 name: Pre-release extension configuration, generation and publication
 
 on:
-  push:
-    tags:
-      - pre*.*.*
+  workflow_run:
+    workflows: ["Runing the unit tests"]
+    types:
+      - completed
 
 jobs:
   release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -19,6 +21,7 @@ jobs:
         uses: softprops/action-gh-release@v1
 
   publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     container: archlinux:multilib-devel
 
