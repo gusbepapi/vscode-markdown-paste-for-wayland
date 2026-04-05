@@ -40,7 +40,7 @@ jobs:
           submodules: recursive
 
       - name: Installing the dependencies
-        run: npm ci
+        run: npm install
 
       - name: Publishing for VSCE
         run: npx vsce publish -p ${{ secrets.VSCE_TOKEN }}

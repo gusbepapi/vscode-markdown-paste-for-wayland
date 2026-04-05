@@ -19,7 +19,7 @@ jobs:
           submodules: recursive
       - name: Extract version
         run: echo "VERSION=$(jq -r .version package.json)" >> $GITHUB_ENV
-      - name: Release
+      - name: Releasing
         uses: softprops/action-gh-release@v1
         with:
           tag_name: pre${{ env.VERSION }}
@@ -41,7 +41,7 @@ jobs:
           submodules: recursive
 
       - name: Installing the dependencies
-        run: npm ci
+        run: npm install
 
       - name: Publishing the pre-release extension
         run: npx vsce publish -p ${{ secrets.VSCE_TOKEN }} --pre-release
