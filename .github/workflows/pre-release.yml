@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - name: Installing Git and Node.js
-        run: pacman -Syu --noconfirm --nedded git nodejs npm
+        run: pacman -Syu --noconfirm --needed git nodejs npm
 
       - name: Checking the repository out
         uses: actions/checkout@v4
