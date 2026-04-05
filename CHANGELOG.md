@@ -1,285 +1,285 @@
-# Change Log
+# Changelog
 
-## 1.4.6 (2026/02/08)
+## 1.4.6 (2026-02-08)
 
-- fix: Pipe | in HTML table cells breaks Markdown structure #146
-- fix: Nest list paste from HTML not working #145
+- fix: Pipe `|` in HTML table cells breaks Markdown structure #146
+- fix: Nested list paste from HTML not working #145
 
-## 1.4.5 (2025/08/29)
+## 1.4.5 (2025-08-29)
 
-- fix: Paste Image is disabled in SSH, and Dev Container remote modes.
+- fix: Paste Image is disabled in SSH and Dev Container remote modes.
 
-## 1.4.4 （2025/04/14）
+## 1.4.4 (2025-04-14)
 
-- fix: timing issue when generating timestamps for imageRules
+- fix: Timing issue when generating timestamps for `imageRules`.
 
-## 1.4.3 (2025/04/14)
+## 1.4.3 (2025-04-14)
 
-- fix: Cannot download redirect file.
+- fix: Cannot download redirected files.
 
-## 1.4.2 (2025/03/29)
+## 1.4.2 (2025-03-29)
 
-- feat: Allow shortcuts and option menu bindings for the mdx, quarto and rmd language.
+- feat: Allow shortcuts and option menu bindings for the mdx, quarto, and rmd languages.
 
-## 1.4.0 (2025/02/12)
+## 1.4.0 (2025-02-12)
 
-- feat: Support imageRules configuration
+- feat: Support `imageRules` configuration.
 
-## 1.3.1 (2024.11.21)
+## 1.3.1 (2024-11-21)
 
-- feat: Support the OpenAI-compatible interface, customize the baseurl
+- feat: Support the OpenAI-compatible interface, and customize the baseURL.
 
-## 1.1.2 (2024.08.29)
+## 1.1.2 (2024-08-29)
 
-- feat: Add prompt file configuration for AI.
+- feat: Added prompt file configuration for AI.
 
-## 1.1.0 (2024.08.18)
+## 1.1.0 (2024-08-18)
 
 - feat: Added functionality to analyze clipboard content using a large language model with Groq.
 
-## 1.0.2 (November 5, 2023)
+## 1.0.2 (2023-11-05)
 
-- feat: New vscode option for html to markdown
+- feat: New VSCode option for HTML to Markdown conversion.
 
-## 1.0.1 (September 10, 2023)
+## 1.0.1 (2023-09-10)
 
-- fix: Variable expansion in rules and Lang-rules: 125
+- fix: Variable expansion in rules and lang-rules. #125
 
-## 1.0.0 (May 3, 2023)
+## 1.0.0 (2023-05-03)
 
-- feat: Mac Support for Rich Text Paste #74
-- fix: Mac OS Ventura: Command not found #113
+- feat: macOS support for rich text paste. #74
+- fix: macOS Ventura: Command not found. #113
 
-## 0.21.2 (March 3, 2023)
+## 0.21.2 (2023-03-03)
 
-- feat: useing selected text as alt text for image.
+- feat: Using selected text as alt text for images.
 
-## 0.21.1 (March 1, 2023)
+## 0.21.1 (2023-03-01)
 
-- fix: add default text for ${selectedText}
+- fix: Added default text for `${selectedText}`.
 
-## 0.21.0 (February 28, 2023)
+## 0.21.0 (2023-02-28)
 
-- feat: add ${selectedText} predefine
+- feat: Added `${selectedText}` predefined variable.
 
-## 0.20.0 (February 27, 2023)
+## 0.20.0 (2023-02-27)
 
-- feat: add applyAllRules config
-- feat: add enableHtmlConverter & enableRulesForHtml
-- fix: fix spaces-after-image bug
-- fix: fix bug in to-markdown
-- fix: fix chinese character bug in #87 , using the method from #44
+- feat: Added `applyAllRules` configuration.
+- feat: Added `enableHtmlConverter` and `enableRulesForHtml`.
+- fix: Fixed spaces-after-image bug.
+- fix: Fixed a bug in to-markdown.
+- fix: Fixed Chinese character bug #87, using the method from #44.
 
-## 0.19.4 (December 17, 2022)
+## 0.19.4 (2022-12-17)
 
-- Add ${relativeFileDirname} ${workspaceFolderBasename} ${file} predefines. #89 #93
+- feat: Added `${relativeFileDirname}`, `${workspaceFolderBasename}`, and `${file}` predefined variables. #89 #93
 
-## 0.19.3 (November 23, 2022)
+## 0.19.3 (2022-11-23)
 
-- Add: ${datetime|format} supported. #91
+- feat: Support `${datetime|format}`. #91
 
-## 0.19.2 (November 16, 2022)
+## 0.19.2 (2022-11-16)
 
-- Fix #90: allow passing width only
+- fix: Allow passing width only. #90
 
-## 0.19.1 (May 28, 2022)
+## 0.19.1 (2022-05-28)
 
-- Fixed paste as base64 not work on Windows. #86
+- fix: Paste as base64 not working on Windows. #86
 
-## 0.19.0 (April 8, 2022)
+## 0.19.0 (2022-04-08)
 
-- Added macOS get clipboard content type script. #84
+- feat: Added macOS get clipboard content type script. #84
 
-## 0.18.7 (April 7, 2022)
+## 0.18.7 (2022-04-07)
 
-- Fix #83 pasting does not work in WSL
+- fix: Pasting does not work in WSL. #83
 
-## 0.18.6 (March 5, 2022)
+## 0.18.6 (2022-03-05)
 
-- Fix #76: Windows: Markdown Download always saved to C:\
+- fix: Windows: Markdown Download always saved to `C:\`. #76
 
-## 0.18.4 (February 19, 2022)
+## 0.18.4 (2022-02-19)
 
-- Fix: parse lang_rules output not correct
+- fix: Parse `lang_rules` output not correct.
 
-## 0.18.3 (February 12, 2022)
+## 0.18.3 (2022-02-12)
 
-- Fix: #72 Windows: Images are always saved to C:
+- fix: Windows: Images are always saved to `C:\`. #72
 
-## 0.18.2 (February 12, 2022)
+## 0.18.2 (2022-02-12)
 
-- Add nameBase option and predefined variable ${datetime}.
+- feat: Added `nameBase` option and predefined variable `${datetime}`.
 
-## 0.18.1 (February 12, 2022)
+## 0.18.1 (2022-02-12)
 
-- Fix: Markdown Download command render incorrect path for download image.
+- fix: Markdown Download command renders incorrect path for downloaded images.
 
-## 0.18.0 (February 12, 2022)
+## 0.18.0 (2022-02-12)
 
-- Feature: Allow pasting of images in documents of other languages than markdown (like asciidoc) #56
+- feat: Allow pasting of images in documents of languages other than Markdown (like asciidoc). #56
 
-## 0.17.2 (February 11, 2022)
+## 0.17.2 (2022-02-11)
 
-- Fix #70 markdown img syntax isn't used in mdx files
+- fix: Markdown `img` syntax is not used in mdx files. #70
 
-## 0.17.1 (February 11, 2022)
+## 0.17.1 (2022-02-11)
 
-- Add the option to use ${fileWorkspaceFolder} #71
+- feat: Added the option to use `${fileWorkspaceFolder}`. #71
 
-## 0.16.1 (January 4, 2022)
+## 0.16.1 (2022-01-04)
 
-- Fix #65: Newlines in path for WSL causing image saving failures
+- fix: Newlines in path for WSL causing image saving failures. #65
 
-## 0.16.0 (January 4, 2022)
+## 0.16.0 (2022-01-04)
 
-- Feature: Support Multi-root Workspaces Folder Settings #64
+- feat: Support multi-root workspaces folder settings. #64
 
-## 0.15.3 (Dec 29, 2021)
+## 0.15.3 (2021-12-29)
 
-- Fix #60: Can't Paste Images to Paths Containing Whitespaces
+- fix: Cannot paste images to paths containing whitespaces. #60
 
-## 0.15.1 (Dec 24, 2021)
+## 0.15.1 (2021-12-24)
 
-- Prioritize Image pastes over HTML pastes over text pastes
+- feat: Prioritise image pastes over HTML pastes over text pastes.
 
-## 0.15.0 (Dec 24, 2021)
+## 0.15.0 (2021-12-24)
 
-- Feature: Support WSL
+- feat: Support WSL.
 
-## 0.14.0 (Dec 12, 2021)
+## 0.14.0 (2021-12-12)
 
-- Feature: Support for pasting code with auto detecting language #50
+- feat: Support for pasting code with auto-detecting language. #50
 
-## 0.13.8 (August 5, 2021)
+## 0.13.8 (2021-08-05)
 
-- Fix #46: Variable "${workspaceRoot}" looks resolved incorrectly
+- fix: Variable `${workspaceRoot}` looks resolved incorrectly. #46
 
-## 0.13.7 (August 2, 2021)
+## 0.13.7 (2021-08-02)
 
-- Fix #45: command 'telesoho.MarkdownPaste' not found
+- fix: Command `telesoho.MarkdownPaste` not found. #45
 
-## 0.13.4 (August 2, 2021)
+## 0.13.4 (2021-08-02)
 
-- Fix #42: files being saved to incorrect location
-- Fix #38: MarkdownPaste shotcut only work on markdown mode
+- fix: Files being saved to incorrect location. #42
+- fix: `MarkdownPaste` shortcut only works in Markdown mode. #38
 
-## 0.13.3 (July 2, 2021)
+## 0.13.3 (2021-07-02)
 
-- Feature: Embed base64 image supported.
-- Add MarkdownPaste.encodePath configuration.
+- feat: Embedded base64 image supported.
+- feat: Added `MarkdownPaste.encodePath` configuration.
 
-## 0.12.3 (Sep 19, 2019)
+## 0.12.3 (2019-09-19)
 
-- Fix some grammar mistakes.
+- fix: Fixed some grammar mistakes.
 
-## 0.12.2 (Sep 1, 2019)
+## 0.12.2 (2019-09-01)
 
-- Fix #25: encode url in markdown
+- fix: Encode URL in Markdown. #25
 
-## 0.12.0 (Feb 8, 2019)
+## 0.12.0 (2019-02-08)
 
-- Feature: Paste local file path that under workspace folder, will add relative path link into markdown.
+- feat: Pasting a local file path that is under the workspace folder will add a relative path link into Markdown.
 
-## 0.11.1 (Dec 21, 2018)
+## 0.11.1 (2018-12-21)
 
-- Fixed: Paste text doesn't work on some Linux.
+- fix: Paste text does not work on some Linux distributions.
 
-## 0.11.0 (Dec 3, 2018)
+## 0.11.0 (2018-12-03)
 
-- Change setting name from `pasteImage` to `MarkdownPaste`
-- Feature: Download url file
+- feat: Changed setting name from `pasteImage` to `MarkdownPaste`.
+- feat: Download URL file.
 
-## 0.10.1 (Nov 12, 2018)
+## 0.10.1 (2018-11-12)
 
-- Feature: emoji supported
+- feat: Emoji supported.
 
-## 0.10.0 (Nov 5, 2018)
+## 0.10.0 (2018-11-05)
 
-- Feature #20: Paste image in HTML format.
+- feat: Paste image in HTML format. #20
 
-## 0.9.5 (Oct 25, 2018)
+## 0.9.5 (2018-10-25)
 
-- Fixed: Cannot get all content in clipboard.
-- Optimize convert html table (colspan supported) to markdown.
+- fix: Cannot get all content in the clipboard.
+- feat: Optimised converting HTML tables (colspan supported) to Markdown.
 
-## 0.9.2 (Oct 13, 2018)
+## 0.9.2 (2018-10-13)
 
-- Support more predefined variables
+- feat: Support more predefined variables.
 
-## 0.9.1 (September 12, 2018)
+## 0.9.1 (2018-09-12)
 
-- Remove devDependencies clipboardy for Window and Linux
-- Optimize convert html to markdown.
+- chore: Removed `devDependencies` `clipboardy` for Windows and Linux.
+- feat: Optimised converting HTML to Markdown.
 
-## 0.9.0 (September 8, 2018)
+## 0.9.0 (2018-09-08)
 
-- Feature: Convert rich text to markdown
-- Fix #18: Paste path add `./` and File name verification support for Chinese
+- feat: Convert rich text to Markdown.
+- fix: Paste path adds `./`, and file name verification supports Chinese. #18
 
-## 0.8.0 (August 12, 2018)
+## 0.8.0 (2018-08-12)
 
-- Feature: Insert latex math symbol into current editor.
+- feat: Insert LaTeX formula or symbol into the current editor.
 
-## 0.7.5 (April 23, 2018)
+## 0.7.5 (2018-04-23)
 
-- Fixed #13: downgrade clipboardy to v1.1.4.
+- fix: Downgraded `clipboardy` to v1.1.4. #13
 
-## 0.7.4 (April 20, 2018)
+## 0.7.4 (2018-04-20)
 
-- Update all dependencies.
-- Add requirment setion to README
+- chore: Updated all dependencies.
+- docs: Added requirements section to README.
 
-## 0.7.3 (November 10, 2017)
+## 0.7.3 (2017-11-10)
 
-- Fix #10: Chinese encoding problem.
+- fix: Chinese encoding problem. #10
 
-## 0.7.1 (October 14, 2017)
+## 0.7.1 (2017-10-14)
 
-- Feature: Convert HTML to Markdown for pasing HTML content.
-- Feature: Add a snippets for adding ruby tag.
+- feat: Convert HTML to Markdown for pasting HTML content.
+- feat: Added a snippet for adding a Ruby tag.
 
-## 0.6.2 (October 04, 2017)
+## 0.6.2 (2017-10-04)
 
-- Feature: Parse and replace content for pasting text.
+- feat: Parse and replace content for pasting text.
 
-## 0.5.0 (September 15, 2017)
+## 0.5.0 (2017-09-15)
 
-- Feature #8 : Autoselect filename for easier renaming.(thank @huhk-sysu)
+- feat: Auto-select filename for easier renaming (thanks to @huhk-sysu). #8
 
-## 0.4.9 (August 28, 2017)
+## 0.4.9 (2017-08-28)
 
-- Fix #7 :Fix encoding problem in non-english language in Windows os.
+- fix: Fix encoding problem in non-English languages on Windows OS. #7
 
-## 0.4.7 (May 21, 2017)
+## 0.4.7 (2017-05-21)
 
-- Fix #5 : Enable upper case as file name.
-- Add pasteImage.silence configure option.
+- fix: Enable upper case as a file name. #5
+- feat: Added `pasteImage.silence` configuration option.
 
-## 0.4.3 (May 21, 2017)
+## 0.4.3 (2017-05-21)
 
-- Fix #4 : Cannot create first level sub folder of root folder on windows.
+- fix: Cannot create first-level subfolder of the root folder on Windows. #4
 
-## 0.4.1 (May 20, 2017)
+## 0.4.1 (2017-05-20)
 
-- Fix #2 : Use forward slashes "/" in the image url
+- fix: Use forward slashes `/` in the image URL. #2
 
-## 0.4.0 (May 19, 2017)
+## 0.4.0 (2017-05-19)
 
-- Feature: Support rename image after paste.
+- feat: Support renaming images after pasting.
 
-## 0.3.0 (December 31, 2016)
+## 0.3.0 (2016-12-31)
 
-- Feature: Support config the path(absolute or relative) to save image.
+- feat: Support configuring the path (absolute or relative) to save images.
 
-## 0.2.0 (November 13, 2016)
+## 0.2.0 (2016-11-13)
 
-- Feature: Add linux support by xclip
-- Feature: Support use the selected text as the image name
+- feat: Added Linux support by `xclip`.
+- feat: Support using the selected text as the image name.
 
-## 0.1.0 (November 12, 2016)
+## 0.1.0 (2016-11-12)
 
-- Feature: Add windows support by powershell
+- feat: Added Windows support by PowerShell.
 
-## 0.0.1
+## 0.0.1 (2016-11-01)
 
-- Finish first publish. Only support macos.
+- Initial release. Only supports macOS.
